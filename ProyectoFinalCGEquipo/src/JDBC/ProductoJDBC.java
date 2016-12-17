@@ -136,7 +136,7 @@ public class ProductoJDBC {
         PreparedStatement ps = null;
         DefaultTableModel modelo = null;
         //como me gustaria que salieran
-        String encabezados[] = {"Id", "Nombre", "Descripcion", "Costo", "Precio", "Presentacion", "Descripcion", "Codigo de barras", "Codigo interno", "Iva", "IdMarca", "IdUnidadDeMedida", "IdCategoria"};
+        String encabezados[] = {"Id", "Nombre", "Costo", "Precio", "Presentacion", "Descripcion", "Codigo de barras", "Codigo interno", "Iva", "IdMarca", "IdUnidadDeMedida", "IdCategoria"};
         try {
             con = Conexion.getConnection();
             ps = con.prepareStatement(SQL_QUERY);
