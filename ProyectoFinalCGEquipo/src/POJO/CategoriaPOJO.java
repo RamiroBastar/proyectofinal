@@ -11,16 +11,16 @@ package POJO;
  */
 public class CategoriaPOJO {
     
-    private int categoria;
+    private int idCategoria;
     private String nombre_categoria;
     private String descripcion_categoria;
 
-    public int getCategoria() {
-        return categoria;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setCategoria(int categoria) {
-        this.categoria = categoria;
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     public String getNombre_categoria() {
@@ -38,7 +38,7 @@ public class CategoriaPOJO {
     public void setDescripcion_categoria(String descripcion_categoria) {
         this.descripcion_categoria = descripcion_categoria;
     }
-    
+
     
     
 }
