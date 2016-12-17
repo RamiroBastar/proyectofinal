@@ -11,16 +11,16 @@ package POJO;
  */
 public class MarcaPOJO {
     
-    private int marca;
+    private int idMarca;
     private String nombre_marca;
     private String descripcion_marca;
 
-    public int getMarca() {
-        return marca;
+    public int getIdMarca() {
+        return idMarca;
     }
 
-    public void setMarca(int marca) {
-        this.marca = marca;
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
     }
 
     public String getNombre_marca() {

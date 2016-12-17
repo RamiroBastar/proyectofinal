@@ -11,16 +11,16 @@ package POJO;
  */
 public class UnidadDeMedidaPOJO {
     
-    private int unidadDeMedida;
+    private int idUnidadDeMedida;
     private String nombre_unidadDeMedida;
     private String descripcion_unidadDeMedida;
 
-    public int getUnidadDeMedida() {
-        return unidadDeMedida;
+    public int getIdUnidadDeMedida() {
+        return idUnidadDeMedida;
     }
 
-    public void setUnidadDeMedida(int unidadDeMedida) {
-        this.unidadDeMedida = unidadDeMedida;
+    public void setIdUnidadDeMedida(int idUnidadDeMedida) {
+        this.idUnidadDeMedida = idUnidadDeMedida;
     }
 
     public String getNombre_unidadDeMedida() {
@@ -38,7 +38,7 @@ public class UnidadDeMedidaPOJO {
     public void setDescripcion_unidadDeMedida(String descripcion_unidadDeMedida) {
         this.descripcion_unidadDeMedida = descripcion_unidadDeMedida;
     }
-    
+
     
     
 }
