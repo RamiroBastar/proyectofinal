@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package POJO;
+package JDBC;
 
 /**
  *
  * @author Profesor Bastar
  */
-public class Ignorenme {
+public class IgnoraJDBC {
     
 }
