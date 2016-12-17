@@ -5,7 +5,7 @@
  */
 package JDBC;
 
-import POJO.DepartamentoPOJO;
+import POJO.CategoriaPOJO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,58 +14,59 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author aealc
+ * @author Personalizados
  */
-public class DepartamentoJDBC {
+public class CategoriaJDBC {
+    
 
-    private static final String TABLE = "departamento";
+    
+     private static final String TABLE = "Categoria";
 
-    private static final String SQL_INSERT = "insert into " + TABLE + " (nombre_departamento, descripcion_departamento)" + " values (?,?)";
+    private static final String SQL_INSERT = "Insert into " + TABLE
+            + " (nombre_categoria, descripcion_categoria) values (?,?)";
+
+    private static final String SQL_DELETE = "Delete from " + TABLE
+            + " where idCategoria=?";
+
+   private static final String SQL_UPDATE = "Update " + TABLE
+            + " set nombre_categoria=?, descripcion_categoria, where idCategoria=?";
 
     private static final String SQL_QUERY = "Select * from " + TABLE;
+    
 
-    private static final String SQL_DELETE = "Delete from " + TABLE + " Where idDepartamento=?";
 
-    private static final String SQL_UPDATE = "Update " + TABLE + " set nombre_departamento=?, descripcion_departamento=?, where idDepartamento=?";
-
-    public static boolean insertar(DepartamentoPOJO pojo) {
-        Connection con = null;
-        PreparedStatement ps = null;
-        int x;
-
-        try {
-            con = Conexion.getConnection(); //Obtengo la conexion a la BD
-            ps = con.prepareStatement(SQL_INSERT); //Preparo el Insert
-
-            //Empiezo a llenar el preparado desde 1
-            ps.setString(1, pojo.getNombre_departamento());
-            ps.setString(2, pojo.getDescripcion_departamento());
-
-            x = ps.executeUpdate(); //Aqui se ejecuta la insercion 
-            if (x == 0) {
-                return false;
-            } else {
-                return true;
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error al insertar " + e);
-            return false;
-
-        } finally {
-            Conexion.close(con);  //Cierro la conexion con la red
-            Conexion.close(ps);  //Cierro el prepareStatement
-
-        }
-    }
-
-    public static boolean eliminar(String id) {
+    public static boolean insertar(CategoriaPOJO pojo) {
         Connection con = null;
         PreparedStatement ps = null;
         int x;
         try {
             con = Conexion.getConnection();
-            ps = con.prepareStatement(SQL_DELETE);
+            ps = con.prepareStatement(SQL_INSERT);
+            ps.setString(1, pojo.getNombre_categoria());
+            ps.setString(2, pojo.getDescripcion_categoria());
+          
+            x = ps.executeUpdate();//Aquí se ejecuta la inserción
+            if (x == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al insertar " + e);
+            return false;
+        } finally {
+            Conexion.close(con);
+            Conexion.close(ps);
+        }
+    }
+    
+      public static boolean eliminar(String id) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        int x;
+        try {
+            con = Conexion.getConnection();//Obtengo la conexion a la bd
+            ps = con.prepareStatement(SQL_DELETE);//Preparo el insert
             ps.setString(1, id);
             x = ps.executeUpdate();
             if (x == 0) {
@@ -74,109 +75,97 @@ public class DepartamentoJDBC {
         } catch (Exception e) {
             System.out.println("Error al eliminar " + e);
             return false;
-
         } finally {
             Conexion.close(con);
             Conexion.close(ps);
         }
         return true;
-
     }
-    
-    public static boolean actualizar(DepartamentoPOJO pojo) {
+      
+       public static boolean actualizar(CategoriaPOJO pojo) {
         Connection con = null;
         PreparedStatement ps = null;
         int x;
-
         try {
-            con = Conexion.getConnection(); //Obtengo la conexion a la BD
-            ps = con.prepareStatement(SQL_UPDATE); //Preparo el Insert
-            ps.setString(1, pojo.getNombre_departamento());
-            ps.setString(2, pojo.getDescripcion_departamento());
-            ps.setInt(3, pojo.getIdDepartamento());
-            
-
-            x = ps.executeUpdate(); //Aqui se ejecuta la insercion 
+            con = Conexion.getConnection();
+            ps = con.prepareStatement(SQL_UPDATE);
+            ps.setString(1, pojo.getNombre_categoria());
+            ps.setString(2, pojo.getDescripcion_categoria());
+            ps.setInt(3, pojo.getIdCategoria());
+            x = ps.executeUpdate();//Aquí se ejecuta el update
             if (x == 0) {
                 return false;
             } else {
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Error al Actualizar " + e);
+            System.out.println("Error al insertar " + e);
             return false;
-
         } finally {
             Conexion.close(con);
             Conexion.close(ps);
         }
     }
-    
-    public static DefaultTableModel cargarTabla() {
+       
+         public static DefaultTableModel cargarTabla() {
         Connection con = null;
         PreparedStatement ps = null;
         DefaultTableModel modelo = null;
-
-        //Como me gustaria que salieran
+        //Como me gustaría que salieran 
         String encabezados[] = {"ID", "Nombre", "Descripcion"};
-
         try {
             con = Conexion.getConnection();
             ps = con.prepareStatement(SQL_QUERY);
             modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(encabezados); //Aqui asigno los encabezados
+            modelo.setColumnIdentifiers(encabezados);//Aqui asigno los encabe
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Object ob[] = new Object[3]; //Numero de Campos
-
-                //A partir de aqui son identicos
-                ob[0] = rs.getObject("idDepartamento");
-                ob[1] = rs.getObject("nombre_departamento");
-                ob[2] = rs.getObject("descripcion_departamento");
+                Object ob[] = new Object[3];//Número de campos
+                //A partir de aquí son IDENTICOS a la BD
+                ob[0] = rs.getObject("id_categoria");
+                ob[1] = rs.getObject("nombre_categoria");
+                ob[2] = rs.getObject("descripcion_categoria");
                 
-
                 modelo.addRow(ob);
             }
-            Conexion.close(rs);
-
+           Conexion.close(rs);
         } catch (Exception e) {
             System.out.println("Error al consultar " + e);
-
         } finally {
             Conexion.close(con);
             Conexion.close(ps);
         }
         return modelo;
     }
-    //TAL CUAL ESTA EN LA BASE DE DATOS
-    public static DefaultComboBoxModel cargarCombo() {
+         
+           public static DefaultComboBoxModel cargarCombo() {
         Connection con = null;
         PreparedStatement ps = null;
         DefaultComboBoxModel modelo = null;
-
         try {
             con = Conexion.getConnection();
             ps = con.prepareStatement(SQL_QUERY);
             modelo = new DefaultComboBoxModel();
-
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                DepartamentoPOJO pojo = new DepartamentoPOJO();
-                pojo.setIdDepartamento(rs.getInt("idDepartamento"));
-                pojo.setNombre_departamento(rs.getString("nombre_departamento"));
-                pojo.setDescripcion_departamento(rs.getString("descripcion_departamento"));
-
+                CategoriaPOJO pojo=new CategoriaPOJO();
+                pojo.setIdCategoria(rs.getInt("id_categoria"));
+                pojo.setNombre_categoria(rs.getString("nombre_categoria"));
+                pojo.setDescripcion_categoria(rs.getString("descripcion_sucursal"));
                 modelo.addElement(pojo);
             }
-
+                        
         } catch (Exception e) {
-            System.out.println("Error al cargar combo " + e);
-
+            System.out.println("Error al cargar combo "+e);
         } finally {
             Conexion.close(con);
             Conexion.close(ps);
-
         }
         return modelo;
     }
+
+
 }
+
+    
+

@@ -5,10 +5,11 @@
  */
 package JDBC;
 
-import POJO.SucursalPOJO;
+import POJO.PuestoPOJO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,20 +29,18 @@ public class PuestoJDBC {
     private static final String SQL_UPDATE = "Update "+TABLE+" set nombre_puesto=?, descripcion_puesto=? where idPuesto=?"; 
     
 
-    public static boolean insertar(SucursalPOJO pojo) {
+    public static boolean insertar(PuestoPOJO pojo) {
         Connection con = null;
         PreparedStatement ps = null;
 
         int x;
 
         try {
-            con = jdbc.Conexion.getConnection(); //Obtengo la conexion de la BD.
+            con = Conexion.getConnection(); //Obtengo la conexion de la BD.
             ps = con.prepareStatement(SQL_INSERT); //Preparo el insert.
-            ps.setString(1, pojo.getNombre_sucursal());
-            ps.setString(2, pojo.getDireccion_sucursal());
-            ps.setString(3, pojo.getClave_sucursal());
-            ps.setString(4, pojo.getTelefono_sucursal());
-           
+            ps.setString(1, pojo.getNombre_puesto());
+            ps.setString(2, pojo.getDescripcion_puesto());
+            
             
             x = ps.executeUpdate(); //Aqui se ejecuta la insercion.
             if (x == 0) {
@@ -55,8 +54,8 @@ public class PuestoJDBC {
             return false;
 
         } finally {
-            jdbc.Conexion.close(con);  //Cierro la conexion 
-            jdbc.Conexion.close(ps);  //Cierro el preparedStatement
+            Conexion.close(con);  //Cierro la conexion 
+            Conexion.close(ps);  //Cierro el preparedStatement
 
         }
 
@@ -69,7 +68,7 @@ public class PuestoJDBC {
         int x;
         
         try {
-            con = jdbc.Conexion.getConnection();
+            con = Conexion.getConnection();
             ps = con.prepareStatement(SQL_DELETE);
             ps.setString(1, id);
             
@@ -84,27 +83,25 @@ public class PuestoJDBC {
             return false;
             
         }finally{
-            jdbc.Conexion.close(con);
-            jdbc.Conexion.close(ps);
+            Conexion.close(con);
+            Conexion.close(ps);
    }
         return true;
    }
     
-    public static boolean actualizar(SucursalPOJO pojo){ 
+    public static boolean actualizar(PuestoPOJO pojo){ 
         
        Connection con = null;
         PreparedStatement ps = null;
         int x; 
         
         try {
-            con = jdbc.Conexion.getConnection(); 
+            con = Conexion.getConnection(); 
             ps = con.prepareStatement(SQL_UPDATE);
             
-            ps.setString(1, pojo.getNombre_sucursal());
-            ps.setString(2, pojo.getDireccion_sucursal());
-            ps.setString(3, pojo.getClave_sucursal());
-            ps.setString(4, pojo.getTelefono_sucursal());
-            ps.setInt(5, pojo.getIdSucursal()); 
+            ps.setString(1, pojo.getNombre_puesto());
+            ps.setString(2, pojo.getDescripcion_puesto());
+            ps.setInt(3, pojo.getIdPuesto()); 
             
             x= ps.executeUpdate();
             if (x == 0) {
@@ -118,8 +115,8 @@ public class PuestoJDBC {
             return false;
             
         }finally{
-            jdbc.Conexion.close(con);
-            jdbc.Conexion.close(ps);
+            Conexion.close(con);
+            Conexion.close(ps);
         }
     }
     
@@ -128,37 +125,67 @@ public class PuestoJDBC {
         PreparedStatement ps = null;
         DefaultTableModel modelo = null;
 
-        String encabezados[] = {"ID", "Nombre", "Direccion", "Clave", "Telefono"};
+        String encabezados[] = {"ID", "Nombre", "Descripcion"};
 
         try {
-            con = jdbc.Conexion.getConnection();
+            con = Conexion.getConnection();
             ps = con.prepareStatement(SQL_QUERY);
             modelo=new DefaultTableModel();
             modelo.setColumnIdentifiers(encabezados);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Object ob[] = new Object[5]; //numero de columnas (campos).
+                Object ob[] = new Object[3]; //numero de columnas (campos).
                 ob[0] = rs.getObject("idSucursal");
-                ob[1] = rs.getObject("nombre_sucursal");
-                ob[2] = rs.getObject("direccion_sucursal");
-                ob[3] = rs.getObject("clave_sucursal");
-                ob[4] = rs.getObject("telefono_sucursal");
+                ob[1] = rs.getObject("nombre_puesto");
+                ob[2] = rs.getObject("descripcion_puesto");
+             
                 
                 
                 modelo.addRow(ob);
             }
-            jdbc.Conexion.close(rs);
+            Conexion.close(rs);
 
         } catch (Exception e) {
             System.out.println("Error al consultar " + e);
 
         } finally {
-            jdbc.Conexion.close(con);
-            jdbc.Conexion.close(ps);
+            Conexion.close(con);
+            Conexion.close(ps);
             
         }
          return modelo;
     }
     
+    public static DefaultComboBoxModel cargarCombo() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        DefaultComboBoxModel modelo = null;
+
+        try {
+            con = Conexion.getConnection(); 
+            ps = con.prepareStatement(SQL_QUERY);
+            modelo = new DefaultComboBoxModel();
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                PuestoPOJO pojo = new PuestoPOJO();
+                pojo.setIdPuesto(rs.getInt("idPuesto"));
+                pojo.setNombre_puesto(rs.getString("nombre_puesto"));
+                pojo.setDescripcion_puesto(rs.getString("descripcion_puesto"));
+                
+                modelo.addElement(pojo);
+                
+            }
+            
+        } catch (Exception e) {
+                System.out.println("Error al cargar combo "+e);
+
+        } finally {
+            Conexion.close(con);
+            Conexion.close(ps);
+            
+        }
+         return modelo;
+    }    
     
 }
