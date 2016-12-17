@@ -9,6 +9,7 @@ import POJO.DepartamentoPOJO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -144,6 +145,37 @@ public class DepartamentoJDBC {
         } finally {
             Conexion.close(con);
             Conexion.close(ps);
+        }
+        return modelo;
+    }
+    //TAL CUAL ESTA EN LA BASE DE DATOS
+    public static DefaultComboBoxModel cargarCombo() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        DefaultComboBoxModel modelo = null;
+
+        try {
+            con = Conexion.getConnection();
+            ps = con.prepareStatement(SQL_QUERY);
+            modelo = new DefaultComboBoxModel();
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                DepartamentoPOJO pojo = new DepartamentoPOJO();
+                pojo.setIdDepartamento(rs.getInt("idDepartamento"));
+                pojo.setNombre_departamento(rs.getString("nombre_departamento"));
+                pojo.setDescripcion_departamento(rs.getString("descripcion_departamento"));
+
+                modelo.addElement(pojo);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al cargar combo " + e);
+
+        } finally {
+            Conexion.close(con);
+            Conexion.close(ps);
+
         }
         return modelo;
     }
