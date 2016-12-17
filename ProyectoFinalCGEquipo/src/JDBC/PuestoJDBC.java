@@ -6,10 +6,10 @@
 package JDBC;
 
 import POJO.PuestoPOJO;
-import POJO.SucursalPOJO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -156,5 +156,36 @@ public class PuestoJDBC {
          return modelo;
     }
     
+    public static DefaultComboBoxModel cargarCombo() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        DefaultComboBoxModel modelo = null;
+
+        try {
+            con = Conexion.getConnection(); 
+            ps = con.prepareStatement(SQL_QUERY);
+            modelo = new DefaultComboBoxModel();
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                PuestoPOJO pojo = new PuestoPOJO();
+                pojo.setIdPuesto(rs.getInt("idPuesto"));
+                pojo.setNombre_puesto(rs.getString("nombre_puesto"));
+                pojo.setDescripcion_puesto(rs.getString("descripcion_puesto"));
+                
+                modelo.addElement(pojo);
+                
+            }
+            
+        } catch (Exception e) {
+                System.out.println("Error al cargar combo "+e);
+
+        } finally {
+            Conexion.close(con);
+            Conexion.close(ps);
+            
+        }
+         return modelo;
+    }    
     
 }
