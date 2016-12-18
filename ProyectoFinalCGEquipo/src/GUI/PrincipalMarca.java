@@ -266,6 +266,11 @@ public class PrincipalMarca extends javax.swing.JFrame {
         });
 
         btnBaja.setText("Baja");
+        btnBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBajaActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -436,6 +441,25 @@ public class PrincipalMarca extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarAcActionPerformed
+
+    private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
+
+          int filaSeleccionada=tbMarca.getSelectedRow();
+        if (filaSeleccionada==-1) {
+            JOptionPane.showMessageDialog(null, "Primero selecciona una fila");
+        } else {
+            String id=tbMarca.getValueAt(filaSeleccionada, 0).toString();
+            boolean x=MarcaJDBC.eliminar(id);
+            if (x==true) {
+                JOptionPane.showMessageDialog(null, "Éxito al eliminar");
+                cargarTabla();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al eliminar");
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBajaActionPerformed
 
     /**
      * @param args the command line arguments
