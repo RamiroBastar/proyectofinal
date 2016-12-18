@@ -159,7 +159,7 @@ public class Launcher extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/originalchi.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 90, 180, 230);
+        jLabel1.setBounds(20, 90, 180, 230);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
