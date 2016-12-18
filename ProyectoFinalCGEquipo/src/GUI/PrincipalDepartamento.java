@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import JDBC.DepartamentoJDBC;
+import POJO.DepartamentoPOJO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aealc
@@ -16,6 +20,11 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
      */
     public PrincipalDepartamento() {
         initComponents();
+        cargarTabla();
+    }
+
+    public void cargarTabla() {
+        tbDepartamento.setModel(DepartamentoJDBC.cargarTabla());
     }
 
     /**
@@ -33,7 +42,7 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
         lbDescripcionAlta = new javax.swing.JLabel();
         tfNombreAlta = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        taDepartamentoAlta = new javax.swing.JTextArea();
+        taDescripcionAlta = new javax.swing.JTextArea();
         btnGuardarAlta = new javax.swing.JButton();
         btnCancelarAlta = new javax.swing.JButton();
         dialogoActualizaDepartamento = new javax.swing.JDialog();
@@ -65,13 +74,23 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
         lbDescripcionAlta.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         lbDescripcionAlta.setText("Descripcion: ");
 
-        taDepartamentoAlta.setColumns(20);
-        taDepartamentoAlta.setRows(5);
-        jScrollPane2.setViewportView(taDepartamentoAlta);
+        taDescripcionAlta.setColumns(20);
+        taDescripcionAlta.setRows(5);
+        jScrollPane2.setViewportView(taDescripcionAlta);
 
         btnGuardarAlta.setText("GUARDAR");
+        btnGuardarAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarAltaActionPerformed(evt);
+            }
+        });
 
         btnCancelarAlta.setText("CANCELAR");
+        btnCancelarAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarAltaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout dialogoAltaDepartamentoLayout = new javax.swing.GroupLayout(dialogoAltaDepartamento.getContentPane());
         dialogoAltaDepartamento.getContentPane().setLayout(dialogoAltaDepartamentoLayout);
@@ -130,13 +149,25 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
         lbDescripcionActualiza.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         lbDescripcionActualiza.setText("Descripcion: ");
 
+        tfIdActualiza.setEditable(false);
+
         taDescripcionActualiza.setColumns(20);
         taDescripcionActualiza.setRows(5);
         jScrollPane3.setViewportView(taDescripcionActualiza);
 
         btnGuardarActualiza.setText("GUARDAR");
+        btnGuardarActualiza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActualizaActionPerformed(evt);
+            }
+        });
 
         btnCancelarActualiza.setText("CANCELAR");
+        btnCancelarActualiza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActualizaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout dialogoActualizaDepartamentoLayout = new javax.swing.GroupLayout(dialogoActualizaDepartamento.getContentPane());
         dialogoActualizaDepartamento.getContentPane().setLayout(dialogoActualizaDepartamentoLayout);
@@ -231,10 +262,20 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
         btnActualiza.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnActualiza.setText("ACTUALIZA");
         btnActualiza.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnActualiza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizaActionPerformed(evt);
+            }
+        });
 
         btnRefrescar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnRefrescar.setText("REFRESCAR");
         btnRefrescar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnRefrescar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefrescarActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnRegresar.setText("<---  REGRESAR");
@@ -274,9 +315,9 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
                         .addComponent(btnBaja)
                         .addGap(18, 18, 18)
                         .addComponent(btnActualiza)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRefrescar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRefrescar)
+                        .addGap(18, 18, 18)
                         .addComponent(btnRegresar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -286,7 +327,6 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
 
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
 
-        
         dialogoAltaDepartamento.setSize(569, 315);
         dialogoAltaDepartamento.setLocationRelativeTo(null);
         dialogoAltaDepartamento.setVisible(true);
@@ -295,12 +335,126 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
 
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
 
+        int filaSeleccionada = tbDepartamento.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Primero selecciona una fila");
 
-        dialogoActualizaDepartamento.setSize(561, 355);
-        dialogoActualizaDepartamento.setLocationRelativeTo(null);
-        dialogoActualizaDepartamento.setVisible(true);
+        } else {
+            String id = tbDepartamento.getValueAt(filaSeleccionada, 0).toString();
+            boolean x = DepartamentoJDBC.eliminar(id);
+
+            if (x == true) {
+                JOptionPane.showMessageDialog(null, "Exito al eliminar");
+                cargarTabla();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al eliminar");
+            }
+
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBajaActionPerformed
+
+    private void btnActualizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaActionPerformed
+
+        int filaSeleccionada = tbDepartamento.getSelectedRow();
+
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Primero selcciona una fila");
+
+        } else {
+            String id = tbDepartamento.getValueAt(filaSeleccionada, 0).toString();
+            String nombre = tbDepartamento.getValueAt(filaSeleccionada, 1).toString();
+            String descripcion = tbDepartamento.getValueAt(filaSeleccionada, 2).toString();
+
+            tfIdActualiza.setText(id);
+            tfNombreActualiza.setText(nombre);
+            taDescripcionActualiza.setText(descripcion);
+
+            dialogoActualizaDepartamento.setSize(561, 355);
+            dialogoActualizaDepartamento.setLocationRelativeTo(null);
+            dialogoActualizaDepartamento.setVisible(true);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizaActionPerformed
+
+    private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
+
+        cargarTabla();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRefrescarActionPerformed
+
+    private void btnGuardarAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAltaActionPerformed
+
+        String nombre = tfNombreAlta.getText();
+        String descripcion = taDescripcionAlta.getText();
+
+        DepartamentoPOJO pojo = new DepartamentoPOJO();
+
+        pojo.setNombre_departamento(nombre);
+        pojo.setDescripcion_departamento(descripcion);
+
+        boolean x = DepartamentoJDBC.insertar(pojo);
+
+        if (x == true) {
+            JOptionPane.showMessageDialog(null, "Exito");
+            cargarTabla();
+            limpiaDepartamentolAlta();
+            dialogoAltaDepartamento.setVisible(false);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarAltaActionPerformed
+
+    private void btnCancelarAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAltaActionPerformed
+
+        limpiaDepartamentolAlta();
+        dialogoAltaDepartamento.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarAltaActionPerformed
+
+    private void btnGuardarActualizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActualizaActionPerformed
+
+        String id = tfIdActualiza.getText();
+        String nombre = tfNombreActualiza.getText();
+        String descripcion = taDescripcionActualiza.getText();
+
+        DepartamentoPOJO pojo = new DepartamentoPOJO();
+        pojo.setIdDepartamento(Integer.parseInt(id));
+        pojo.setNombre_departamento(nombre);
+        pojo.setDescripcion_departamento(descripcion);
+
+        boolean x = DepartamentoJDBC.actualizar(pojo);
+
+        if (x == true) {
+            JOptionPane.showMessageDialog(null, "Exito al actualizar");
+            cargarTabla();
+
+            //Hay que hacer limpia dialogo 2 y llamarlo aqui
+            dialogoActualizaDepartamento.setVisible(false);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al actualizar");
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActualizaActionPerformed
+
+    private void btnCancelarActualizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActualizaActionPerformed
+
+        limpiaDepartamentolAlta();
+        dialogoActualizaDepartamento.setVisible(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActualizaActionPerformed
+
+    private void limpiaDepartamentolAlta() {
+        tfNombreAlta.setText(null);
+        taDescripcionAlta.setText(null);
+
+    }
 
     /**
      * @param args the command line arguments
@@ -360,8 +514,8 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
     private javax.swing.JLabel lbId;
     private javax.swing.JLabel lbNombreActualiza;
     private javax.swing.JLabel lbNombreAlta;
-    private javax.swing.JTextArea taDepartamentoAlta;
     private javax.swing.JTextArea taDescripcionActualiza;
+    private javax.swing.JTextArea taDescripcionAlta;
     private javax.swing.JTable tbDepartamento;
     private javax.swing.JTextField tfIdActualiza;
     private javax.swing.JTextField tfNombreActualiza;
