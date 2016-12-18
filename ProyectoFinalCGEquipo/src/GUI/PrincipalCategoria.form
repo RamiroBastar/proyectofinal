@@ -106,11 +106,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarAlActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelarAl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarAlActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -229,11 +235,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarAcActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelarAc">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarAcActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -378,6 +390,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Alta"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAltaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnBaja">
           <Properties>
@@ -386,6 +401,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Baja"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBajaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnActualizar">
           <Properties>
@@ -394,6 +412,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Actualizar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRefresh">
           <Properties>
@@ -402,6 +423,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Refresh"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRefreshActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -412,6 +436,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Regresar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -182,6 +182,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;--Regresar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarAlActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -193,76 +196,86 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="lbNombreAc" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="tfNombreAc" min="-2" pref="269" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="btnGrabarAc" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="btnRegresarAc" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jlDireccionAc" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbTelefonoAc" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="lbClaveAc" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane5" min="-2" pref="335" max="-2" attributes="0"/>
                                       <Component id="tfClaveAc" min="-2" pref="166" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lbTelefonoAc" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="btnGrabarAc" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                                          <Component id="btnRegresarAc" min="-2" max="-2" attributes="0"/>
-                                      </Group>
                                       <Component id="tfTelefonoAc" min="-2" pref="276" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jlDireccionAc" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbNombreAc" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbIdSucursalAc" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="tfNombreAc" min="-2" pref="269" max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" min="-2" pref="335" max="-2" attributes="0"/>
+                              <Component id="tfIdSucursalAc" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="41" max="32767" attributes="0"/>
+                  <EmptySpace pref="53" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbNombreAc" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfNombreAc" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbIdSucursalAc" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfIdSucursalAc" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jlDireccionAc" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane5" min="-2" pref="80" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbClaveAc" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfClaveAc" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbTelefonoAc" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfTelefonoAc" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="61" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnGrabarAc" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnRegresarAc" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="tfNombreAc" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jlDireccionAc" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" min="-2" pref="80" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbClaveAc" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfClaveAc" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbTelefonoAc" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfTelefonoAc" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnGrabarAc" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnRegresarAc" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="lbNombreAc" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               </Group>
@@ -327,6 +340,19 @@
         <Component class="javax.swing.JButton" name="btnRegresarAc">
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;--REGRESAR"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarAcActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbIdSucursalAc">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Id:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfIdSucursalAc">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -440,7 +466,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable2">
+        <Component class="javax.swing.JTable" name="tbSucursal">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">

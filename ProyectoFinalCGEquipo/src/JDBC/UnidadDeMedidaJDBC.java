@@ -9,6 +9,7 @@ import POJO.UnidadDeMedidaPOJO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -146,6 +147,35 @@ public class UnidadDeMedidaJDBC {
             Conexion.close(ps);
         }
         return modelo;
+    }
+    
+    
+    public static DefaultComboBoxModel cargarCombo() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        DefaultComboBoxModel modelo = null;
+        try {
+            con = Conexion.getConnection();
+            ps = con.prepareStatement(SQL_QUERY);
+            modelo = new DefaultComboBoxModel();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                UnidadDeMedidaPOJO pojo = new UnidadDeMedidaPOJO();
+                pojo.setIdUnidadDeMedida(rs.getInt("idUnidadDeMedida"));
+                pojo.setNombre_unidadDeMedida(rs.getString("nombre_UnidadDeMedida"));
+                pojo.setDescripcion_unidadDeMedida(rs.getString("Descripcion_unidadDeMedida"));
+               
+                modelo.addElement(pojo);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al cargar combo " + e);
+
+        } finally {
+            Conexion.close(con);
+            Conexion.close(ps);
+        }
+        return modelo;
+
     }
     
 }

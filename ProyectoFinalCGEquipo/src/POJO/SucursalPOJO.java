@@ -17,6 +17,13 @@ public class SucursalPOJO {
     private String clave_sucursal;
     private String telefono_sucursal;
 
+    @Override
+    public String toString() {
+        return nombre_sucursal; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+
     public int getIdSucursal() {
         return idSucursal;
     }
