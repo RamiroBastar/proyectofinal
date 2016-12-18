@@ -251,7 +251,7 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
         });
 
         btnBaja.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnBaja.setText("BAJA");
+        btnBaja.setText("ELIMINAR");
         btnBaja.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,6 +280,11 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
         btnRegresar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnRegresar.setText("<---  REGRESAR");
         btnRegresar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -449,6 +454,15 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActualizaActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+
+        Menu m = new Menu();
+        m.setVisible(true);
+        this.setVisible(false);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void limpiaDepartamentolAlta() {
         tfNombreAlta.setText(null);

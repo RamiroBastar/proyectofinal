@@ -39,6 +39,11 @@ public class MarcaPOJO {
         this.descripcion_marca = descripcion_marca;
     }
 
-    
+    @Override
+    public String toString() {
+        return  nombre_marca;
+    }
+
+   
     
 }

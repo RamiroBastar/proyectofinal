@@ -9,6 +9,7 @@ import POJO.MarcaPOJO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -139,6 +140,42 @@ public class MarcaJDBC {
         }
         return modelo;
     }
+    
+   public static DefaultComboBoxModel cargarCombo(){
+        
+        Connection con=null;
+        PreparedStatement ps=null;
+        DefaultComboBoxModel modelo=null;
+        try {
+            con=Conexion.getConnection();
+            ps=con.prepareStatement(SQL_QUERY);
+            modelo=new DefaultComboBoxModel();
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()) {
+                MarcaPOJO pojo=new MarcaPOJO();
+                pojo.setIdMarca(rs.getInt("idcategoria"));
+                pojo.setNombre_marca(rs.getString("nombre"));
+                pojo.setDescripcion_marca(rs.getString("descripcion"));
+                modelo.addElement(pojo);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al cargar comobo "+e);
+        }finally{
+        Conexion.close(con);
+        Conexion.close(ps);
+        }
+    return modelo;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
     
