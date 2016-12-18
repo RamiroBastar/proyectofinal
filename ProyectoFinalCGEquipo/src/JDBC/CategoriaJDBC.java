@@ -29,7 +29,7 @@ public class CategoriaJDBC {
             + " where idCategoria=?";
 
    private static final String SQL_UPDATE = "Update " + TABLE
-            + " set nombre_categoria=?, descripcion_categoria, where idCategoria=?";
+            + " set nombre_categoria=?, descripcion_categoria=?, where idCategoria=?";
 
     private static final String SQL_QUERY = "Select * from " + TABLE;
     
@@ -150,7 +150,7 @@ public class CategoriaJDBC {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 CategoriaPOJO pojo=new CategoriaPOJO();
-                pojo.setIdCategoria(rs.getInt("id_categoria"));
+                pojo.setIdCategoria(rs.getInt("idCategoria"));
                 pojo.setNombre_categoria(rs.getString("nombre_categoria"));
                 pojo.setDescripcion_categoria(rs.getString("descripcion_sucursal"));
                 modelo.addElement(pojo);
