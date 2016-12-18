@@ -15,6 +15,13 @@ public class UnidadDeMedidaPOJO {
     private String nombre_unidadDeMedida;
     private String descripcion_unidadDeMedida;
 
+    @Override
+    public String toString() {
+        return nombre_unidadDeMedida; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+
     public int getIdUnidadDeMedida() {
         return idUnidadDeMedida;
     }
