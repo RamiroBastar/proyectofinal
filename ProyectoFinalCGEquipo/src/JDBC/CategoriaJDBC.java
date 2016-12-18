@@ -29,7 +29,7 @@ public class CategoriaJDBC {
             + " where idCategoria=?";
 
    private static final String SQL_UPDATE = "Update " + TABLE
-            + " set nombre_categoria=?, descripcion_categoria=?, where idCategoria=?";
+            + " set nombre_categoria=?, descripcion_categoria=? where idCategoria=?";
 
     private static final String SQL_QUERY = "Select * from " + TABLE;
     

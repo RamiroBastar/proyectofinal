@@ -240,6 +240,11 @@ public class PrincipalCategoria extends javax.swing.JFrame {
 
         btnBaja.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBaja.setText("Baja");
+        btnBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBajaActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -251,6 +256,11 @@ public class PrincipalCategoria extends javax.swing.JFrame {
 
         btnRefresh.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -366,7 +376,9 @@ public class PrincipalCategoria extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
 
+        Menu menu= new Menu();
         this.setVisible(false);
+        menu.setVisible(true);
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegresarActionPerformed
@@ -438,6 +450,32 @@ public class PrincipalCategoria extends javax.swing.JFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarAcActionPerformed
+
+    private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
+
+        int filaSeleccionada = tbCategoria.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Primero selecciona una fila");
+        } else {
+            String id = tbCategoria.getValueAt(filaSeleccionada, 0).toString();
+            boolean x = CategoriaJDBC.eliminar(id);
+            if (x == true) {
+                JOptionPane.showMessageDialog(null, "Exito al eliminar");
+                cargarTabla();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al eliminar");
+            }
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBajaActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+
+        cargarTabla();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     /**
      * @param args the command line arguments
