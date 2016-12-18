@@ -5,6 +5,11 @@
  */
 package GUI;
 
+import JDBC.MarcaJDBC;
+import JDBC.SucursalJDBC;
+import POJO.SucursalPOJO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Juan
@@ -16,6 +21,8 @@ public class PrincipalSucursal extends javax.swing.JFrame {
      */
     public PrincipalSucursal() {
         initComponents();
+        //en el constructor                Se debe importar
+        this.tbSucursal.setModel(SucursalJDBC.cargarTabla());
     }
 
     /**
@@ -56,11 +63,13 @@ public class PrincipalSucursal extends javax.swing.JFrame {
         tfTelefonoAc = new javax.swing.JTextField();
         btnGrabarAc = new javax.swing.JButton();
         btnRegresarAc = new javax.swing.JButton();
+        lbIdSucursalAc = new javax.swing.JLabel();
+        tfIdSucursalAc = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbSucursal = new javax.swing.JTable();
         btnAlta = new javax.swing.JButton();
         btnBaja = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
@@ -117,6 +126,11 @@ public class PrincipalSucursal extends javax.swing.JFrame {
         btnInicializarAl.setText("Inicializar");
 
         btnRegresarAl.setText("<--Regresar");
+        btnRegresarAl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarAlActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout dialogoAltaSucursalLayout = new javax.swing.GroupLayout(dialogoAltaSucursal.getContentPane());
         dialogoAltaSucursal.getContentPane().setLayout(dialogoAltaSucursalLayout);
@@ -203,6 +217,15 @@ public class PrincipalSucursal extends javax.swing.JFrame {
         btnGrabarAc.setText("GRABAR");
 
         btnRegresarAc.setText("<--REGRESAR");
+        btnRegresarAc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarAcActionPerformed(evt);
+            }
+        });
+
+        lbIdSucursalAc.setText("Id:");
+
+        tfIdSucursalAc.setEditable(false);
 
         javax.swing.GroupLayout dialogoActualizaSucursalLayout = new javax.swing.GroupLayout(dialogoActualizaSucursal.getContentPane());
         dialogoActualizaSucursal.getContentPane().setLayout(dialogoActualizaSucursalLayout);
@@ -211,59 +234,67 @@ public class PrincipalSucursal extends javax.swing.JFrame {
             .addGroup(dialogoActualizaSucursalLayout.createSequentialGroup()
                 .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dialogoActualizaSucursalLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jLabel3))
-                    .addGroup(dialogoActualizaSucursalLayout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(dialogoActualizaSucursalLayout.createSequentialGroup()
-                                .addComponent(lbNombreAc)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfNombreAc, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(56, 56, 56)
+                                .addComponent(btnGrabarAc)
+                                .addGap(90, 90, 90)
+                                .addComponent(btnRegresarAc))
                             .addGroup(dialogoActualizaSucursalLayout.createSequentialGroup()
                                 .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlDireccionAc)
+                                    .addComponent(lbTelefonoAc)
                                     .addComponent(lbClaveAc))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfClaveAc, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(dialogoActualizaSucursalLayout.createSequentialGroup()
-                                .addComponent(lbTelefonoAc)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(dialogoActualizaSucursalLayout.createSequentialGroup()
-                                        .addComponent(btnGrabarAc)
-                                        .addGap(90, 90, 90)
-                                        .addComponent(btnRegresarAc))
-                                    .addComponent(tfTelefonoAc, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(41, Short.MAX_VALUE))
+                                    .addComponent(tfClaveAc, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfTelefonoAc, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(dialogoActualizaSucursalLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlDireccionAc)
+                            .addComponent(lbNombreAc)
+                            .addComponent(lbIdSucursalAc))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfNombreAc, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfIdSucursalAc, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(dialogoActualizaSucursalLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(jLabel3)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         dialogoActualizaSucursalLayout.setVerticalGroup(
             dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogoActualizaSucursalLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
                 .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbNombreAc)
-                    .addComponent(tfNombreAc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(lbIdSucursalAc)
+                    .addComponent(tfIdSucursalAc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlDireccionAc)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbClaveAc)
-                    .addComponent(tfClaveAc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbTelefonoAc)
-                    .addComponent(tfTelefonoAc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGrabarAc)
-                    .addComponent(btnRegresarAc))
+                    .addGroup(dialogoActualizaSucursalLayout.createSequentialGroup()
+                        .addComponent(tfNombreAc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlDireccionAc)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbClaveAc)
+                            .addComponent(tfClaveAc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbTelefonoAc)
+                            .addComponent(tfTelefonoAc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(dialogoActualizaSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGrabarAc)
+                            .addComponent(btnRegresarAc)))
+                    .addComponent(lbNombreAc))
                 .addGap(44, 44, 44))
         );
 
@@ -277,7 +308,7 @@ public class PrincipalSucursal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("Control de SUCURSAL");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbSucursal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -288,7 +319,7 @@ public class PrincipalSucursal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tbSucursal);
 
         btnAlta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAlta.setText("ALTA");
@@ -401,6 +432,24 @@ public class PrincipalSucursal extends javax.swing.JFrame {
 
     private void btnGrabarAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarAlActionPerformed
         // TODO add your handling code here:
+        String nombre=tfNombreAl.getText();
+        String direccion=taDireccionAl.getText();
+        String clave=tfClaveAl.getText();
+        String telefono=tfTelefonoAl.getText();
+        
+        SucursalPOJO pojo = new SucursalPOJO();
+        pojo.setNombre_sucursal(nombre);
+        pojo.setDireccion_sucursal(direccion);
+        pojo.setClave_sucursal(clave);
+        pojo.setTelefono_sucursal(telefono);
+        
+        boolean x=SucursalJDBC.insertar(pojo);
+        if (x==true) {
+            JOptionPane.showMessageDialog(null, "exito");
+        }else{
+            JOptionPane.showMessageDialog(null, "error");
+            
+        }
     }//GEN-LAST:event_btnGrabarAlActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -409,6 +458,16 @@ public class PrincipalSucursal extends javax.swing.JFrame {
         dialogoActualizaSucursal.setVisible(true);
         
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnRegresarAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarAlActionPerformed
+        // TODO add your handling code here:
+        dialogoAltaSucursal.setVisible(false);
+    }//GEN-LAST:event_btnRegresarAlActionPerformed
+
+    private void btnRegresarAcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarAcActionPerformed
+        // TODO add your handling code here:
+        dialogoActualizaSucursal.setVisible(false);
+    }//GEN-LAST:event_btnRegresarAcActionPerformed
 
     /**
      * @param args the command line arguments
@@ -467,20 +526,22 @@ public class PrincipalSucursal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel jlDireccionAc;
     private javax.swing.JLabel lbClaveAc;
     private javax.swing.JLabel lbClaveAl;
     private javax.swing.JLabel lbDireccionAl;
+    private javax.swing.JLabel lbIdSucursalAc;
     private javax.swing.JLabel lbNombreAc;
     private javax.swing.JLabel lbNombreAl;
     private javax.swing.JLabel lbTelefonoAc;
     private javax.swing.JLabel lbTelefonoAl;
     private javax.swing.JTextArea taDireccionAc;
     private javax.swing.JTextArea taDireccionAl;
+    private javax.swing.JTable tbSucursal;
     private javax.swing.JTextField tfClaveAc;
     private javax.swing.JTextField tfClaveAl;
+    private javax.swing.JTextField tfIdSucursalAc;
     private javax.swing.JTextField tfNombreAc;
     private javax.swing.JTextField tfNombreAl;
     private javax.swing.JTextField tfTelefonoAc;
