@@ -6,6 +6,7 @@
 package JDBC;
 
 import POJO.PersonalPOJO;
+import POJO.ProductoPOJO;
 import POJO.SocioComercialPOJO;
 import java.awt.Image;
 import java.io.ByteArrayInputStream;
@@ -20,6 +21,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
 /**
@@ -199,6 +201,41 @@ public class PersonalJDBC {
             Conexion.close(ps);
 
         }
+
+    }
+          public static DefaultComboBoxModel cargarCombo() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        DefaultComboBoxModel modelo = null;
+        try {
+            con = Conexion.getConnection();
+            ps = con.prepareStatement(SQL_QUERY);
+            modelo = new DefaultComboBoxModel();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                PersonalPOJO pojo = new PersonalPOJO();
+                pojo.setIdPersonal(rs.getInt("idPersonal"));
+                pojo.setNombre_personal(rs.getString("nombre_personal"));
+                pojo.setDireccion_personal(rs.getString("direccion_personal"));
+                pojo.setTelefono_personal(rs.getString("telefono_peronal"));
+                pojo.setFecha_nacimiento_personal(rs.getDate("fecha_nacimoento_personal"));
+                pojo.setAcceso_sistema_personal(rs.getBoolean("acceso_sistema_personal"));
+                pojo.setUsuario_personal(rs.getString("usuario_personal"));
+                pojo.setPassword_personal(rs.getString("password_personal"));
+                //pojo.setFoto_personal(rs.get("iva_producto"));
+                pojo.setDepartamento_idDepartamento(rs.getInt("departamento_idDepartamento"));
+                pojo.setPuesto_idPuesto(rs.getInt("puesto_idPuesto"));
+                pojo.setSucursal_idSucursal(rs.getInt("sucursal_idSucursal"));
+                modelo.addElement(pojo);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al cargar combo " + e);
+
+        } finally {
+            Conexion.close(con);
+            Conexion.close(ps);
+        }
+        return modelo;
 
     }
 
