@@ -6,6 +6,8 @@
 package GUI;
 
 import JDBC.MarcaJDBC;
+import POJO.MarcaPOJO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -88,6 +90,11 @@ public class PrincipalMarca extends javax.swing.JFrame {
         jScrollPane2.setViewportView(taDescripcionAl);
 
         btnGuardarAl.setText("Guardar");
+        btnGuardarAl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarAlActionPerformed(evt);
+            }
+        });
 
         btnCancelarAl.setText("Cancelar");
         btnCancelarAl.addActionListener(new java.awt.event.ActionListener() {
@@ -165,6 +172,11 @@ public class PrincipalMarca extends javax.swing.JFrame {
         jScrollPane3.setViewportView(taDescripcionAc);
 
         btnGuardarAc.setText("Guardar");
+        btnGuardarAc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarAcActionPerformed(evt);
+            }
+        });
 
         btnCancelarAc.setText("Cancelar");
         btnCancelarAc.addActionListener(new java.awt.event.ActionListener() {
@@ -341,9 +353,22 @@ public class PrincipalMarca extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAltaActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
- dialogoActualizarMarca.setSize(471, 429);
-        dialogoActualizarMarca.setLocationRelativeTo(null);
-        dialogoActualizarMarca.setVisible(true);
+  int filaSeleccionada=tbMarca.getSelectedRow();
+        if (filaSeleccionada==-1) {
+            JOptionPane.showMessageDialog(null, "Primero selecciona una fila");
+        } else {
+            String id=tbMarca.getValueAt(filaSeleccionada, 0).toString();
+            String nombre=tbMarca.getValueAt(filaSeleccionada, 1).toString();
+            String descripcion=tbMarca.getValueAt(filaSeleccionada, 2).toString();
+            //Nesecito los componentes del dialogo2
+            tfIdAc.setText(id);
+            tfNombreAc.setText(nombre);
+            taDescripcionAc.setText(descripcion);
+            dialogoActualizarMarca.setSize(471,429);
+            dialogoActualizarMarca.setLocationRelativeTo(null);
+            dialogoActualizarMarca.setVisible(true);
+        }
+
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnActualizarActionPerformed
@@ -363,6 +388,54 @@ public class PrincipalMarca extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarAcActionPerformed
+
+    private void btnGuardarAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAlActionPerformed
+
+         String nombre=tfNombreAl.getText();
+        String descripcion=taDescripcionAl.getText();
+        MarcaPOJO pojo = new MarcaPOJO();
+        pojo.setNombre_marca(nombre);
+        pojo.setDescripcion_marca(descripcion);
+        boolean x=MarcaJDBC.insertar(pojo);
+        if (x==true) {
+            JOptionPane.showMessageDialog(null, "ÉXITO");
+            cargarTabla();
+            //Limpiar los campos
+            limpiaDialogoAlta();
+            //Apagar el dialogo
+            dialogoAltaMarca.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "ERROR");
+        }
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarAlActionPerformed
+
+    private void btnGuardarAcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarAcActionPerformed
+
+      String id=tfIdAc.getText();
+        String nombre=tfNombreAc.getText();
+        String descripcion=taDescripcionAc.getText();
+        MarcaPOJO pojo = new MarcaPOJO();
+        pojo.setIdMarca(Integer.parseInt(id));
+        pojo.setNombre_marca(nombre);
+        pojo.setDescripcion_marca(descripcion);
+        boolean x=MarcaJDBC.actualizar(pojo);
+        if (x==true) {
+            JOptionPane.showMessageDialog(null, "Éxito al actualizar");
+            cargarTabla();
+            //Hay que hacer limpia dialogo 2 y llamarlo aqui
+            dialogoActualizarMarca.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al actualizar");
+        }
+
+       
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarAcActionPerformed
 
     /**
      * @param args the command line arguments

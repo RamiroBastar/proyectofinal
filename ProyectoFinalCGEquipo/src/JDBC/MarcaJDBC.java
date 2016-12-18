@@ -28,7 +28,7 @@ public class MarcaJDBC {
 
     private static final String SQL_QUERY = "Select * from " + TABLE;
     
-    private static final String SQL_UPDATE = "Update " + TABLE + " set nombre_marca=?, descripcion_marca=?, where idMarca=?";
+    private static final String SQL_UPDATE = "Update " + TABLE + " set nombre_marca=?, descripcion_marca=? where idMarca=?";
 
     public static boolean insertar(MarcaPOJO pojo) {
         Connection con = null;
