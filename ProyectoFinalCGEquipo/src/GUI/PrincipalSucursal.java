@@ -308,6 +308,11 @@ public class PrincipalSucursal extends javax.swing.JFrame {
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnRefresh.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnRefresh.setText("Refresh");
@@ -378,6 +383,8 @@ public class PrincipalSucursal extends javax.swing.JFrame {
 
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
         // TODO add your handling code here:
+        dialogoAltaSucursal.setSize(500, 500);
+        dialogoAltaSucursal.setVisible(true);
     }//GEN-LAST:event_btnAltaActionPerformed
 
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
@@ -395,6 +402,13 @@ public class PrincipalSucursal extends javax.swing.JFrame {
     private void btnGrabarAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarAlActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGrabarAlActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        dialogoActualizaSucursal.setSize(500, 500);
+        dialogoActualizaSucursal.setVisible(true);
+        
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
      * @param args the command line arguments

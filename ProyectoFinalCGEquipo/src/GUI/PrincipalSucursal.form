@@ -483,6 +483,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Actualizar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnRefresh">
       <Properties>
