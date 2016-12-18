@@ -135,7 +135,7 @@ public class PuestoJDBC {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Object ob[] = new Object[3]; //numero de columnas (campos).
-                ob[0] = rs.getObject("idSucursal");
+                ob[0] = rs.getObject("idPuesto");
                 ob[1] = rs.getObject("nombre_puesto");
                 ob[2] = rs.getObject("descripcion_puesto");
              
