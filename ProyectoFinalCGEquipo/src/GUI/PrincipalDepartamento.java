@@ -37,6 +37,16 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
         btnGuardarAlta = new javax.swing.JButton();
         btnCancelarAlta = new javax.swing.JButton();
         dialogoActualizaDepartamento = new javax.swing.JDialog();
+        lbActualizaDepartamento = new javax.swing.JLabel();
+        lbId = new javax.swing.JLabel();
+        lbNombreActualiza = new javax.swing.JLabel();
+        lbDescripcionActualiza = new javax.swing.JLabel();
+        tfIdActualiza = new javax.swing.JTextField();
+        tfNombreActualiza = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        taDescripcionActualiza = new javax.swing.JTextArea();
+        btnGuardarActualiza = new javax.swing.JButton();
+        btnCancelarActualiza = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDepartamento = new javax.swing.JTable();
         lbControldeDepartamento = new javax.swing.JLabel();
@@ -108,15 +118,77 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
+        lbActualizaDepartamento.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbActualizaDepartamento.setText("Actualiza Departamento");
+
+        lbId.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        lbId.setText("ID: ");
+
+        lbNombreActualiza.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        lbNombreActualiza.setText("Nombre: ");
+
+        lbDescripcionActualiza.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        lbDescripcionActualiza.setText("Descripcion: ");
+
+        taDescripcionActualiza.setColumns(20);
+        taDescripcionActualiza.setRows(5);
+        jScrollPane3.setViewportView(taDescripcionActualiza);
+
+        btnGuardarActualiza.setText("GUARDAR");
+
+        btnCancelarActualiza.setText("CANCELAR");
+
         javax.swing.GroupLayout dialogoActualizaDepartamentoLayout = new javax.swing.GroupLayout(dialogoActualizaDepartamento.getContentPane());
         dialogoActualizaDepartamento.getContentPane().setLayout(dialogoActualizaDepartamentoLayout);
         dialogoActualizaDepartamentoLayout.setHorizontalGroup(
             dialogoActualizaDepartamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(dialogoActualizaDepartamentoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dialogoActualizaDepartamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogoActualizaDepartamentoLayout.createSequentialGroup()
+                        .addComponent(lbId)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfIdActualiza))
+                    .addGroup(dialogoActualizaDepartamentoLayout.createSequentialGroup()
+                        .addComponent(lbNombreActualiza)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfNombreActualiza))
+                    .addGroup(dialogoActualizaDepartamentoLayout.createSequentialGroup()
+                        .addComponent(lbActualizaDepartamento)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(dialogoActualizaDepartamentoLayout.createSequentialGroup()
+                        .addComponent(lbDescripcionActualiza)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(dialogoActualizaDepartamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dialogoActualizaDepartamentoLayout.createSequentialGroup()
+                                .addComponent(btnGuardarActualiza)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
+                                .addComponent(btnCancelarActualiza))
+                            .addComponent(jScrollPane3))))
+                .addContainerGap())
         );
         dialogoActualizaDepartamentoLayout.setVerticalGroup(
             dialogoActualizaDepartamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(dialogoActualizaDepartamentoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbActualizaDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(dialogoActualizaDepartamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbId)
+                    .addComponent(tfIdActualiza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dialogoActualizaDepartamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNombreActualiza)
+                    .addComponent(tfNombreActualiza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dialogoActualizaDepartamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbDescripcionActualiza)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(dialogoActualizaDepartamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardarActualiza)
+                    .addComponent(btnCancelarActualiza))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -141,10 +213,20 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
         btnAlta.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnAlta.setText("ALTA");
         btnAlta.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAltaActionPerformed(evt);
+            }
+        });
 
         btnBaja.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnBaja.setText("BAJA");
         btnBaja.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBajaActionPerformed(evt);
+            }
+        });
 
         btnActualiza.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnActualiza.setText("ACTUALIZA");
@@ -155,7 +237,7 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
         btnRefrescar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnRegresar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnRegresar.setText("REGRESAR");
+        btnRegresar.setText("<---  REGRESAR");
         btnRegresar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,12 +251,13 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnActualiza, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRefrescar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnAlta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBaja, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnActualiza, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRefrescar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -200,6 +283,24 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
+
+        
+        dialogoAltaDepartamento.setSize(569, 315);
+        dialogoAltaDepartamento.setLocationRelativeTo(null);
+        dialogoAltaDepartamento.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAltaActionPerformed
+
+    private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
+
+
+        dialogoActualizaDepartamento.setSize(561, 355);
+        dialogoActualizaDepartamento.setLocationRelativeTo(null);
+        dialogoActualizaDepartamento.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBajaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,7 +341,9 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
     private javax.swing.JButton btnActualiza;
     private javax.swing.JButton btnAlta;
     private javax.swing.JButton btnBaja;
+    private javax.swing.JButton btnCancelarActualiza;
     private javax.swing.JButton btnCancelarAlta;
+    private javax.swing.JButton btnGuardarActualiza;
     private javax.swing.JButton btnGuardarAlta;
     private javax.swing.JButton btnRefrescar;
     private javax.swing.JButton btnRegresar;
@@ -248,12 +351,20 @@ public class PrincipalDepartamento extends javax.swing.JFrame {
     private javax.swing.JDialog dialogoAltaDepartamento;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lbActualizaDepartamento;
     private javax.swing.JLabel lbAltadeDepartamento;
     private javax.swing.JLabel lbControldeDepartamento;
+    private javax.swing.JLabel lbDescripcionActualiza;
     private javax.swing.JLabel lbDescripcionAlta;
+    private javax.swing.JLabel lbId;
+    private javax.swing.JLabel lbNombreActualiza;
     private javax.swing.JLabel lbNombreAlta;
     private javax.swing.JTextArea taDepartamentoAlta;
+    private javax.swing.JTextArea taDescripcionActualiza;
     private javax.swing.JTable tbDepartamento;
+    private javax.swing.JTextField tfIdActualiza;
+    private javax.swing.JTextField tfNombreActualiza;
     private javax.swing.JTextField tfNombreAlta;
     // End of variables declaration//GEN-END:variables
 }
