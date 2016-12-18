@@ -20,7 +20,7 @@ public class CategoriaJDBC {
     
 
     
-     private static final String TABLE = "Categoria";
+     private static final String TABLE = "categoria";
 
     private static final String SQL_INSERT = "Insert into " + TABLE
             + " (nombre_categoria, descripcion_categoria) values (?,?)";
@@ -44,6 +44,7 @@ public class CategoriaJDBC {
             ps = con.prepareStatement(SQL_INSERT);
             ps.setString(1, pojo.getNombre_categoria());
             ps.setString(2, pojo.getDescripcion_categoria());
+           
           
             x = ps.executeUpdate();//Aquí se ejecuta la inserción
             if (x == 0) {
@@ -122,7 +123,7 @@ public class CategoriaJDBC {
             while (rs.next()) {
                 Object ob[] = new Object[3];//Número de campos
                 //A partir de aquí son IDENTICOS a la BD
-                ob[0] = rs.getObject("id_categoria");
+                ob[0] = rs.getObject("idCategoria");
                 ob[1] = rs.getObject("nombre_categoria");
                 ob[2] = rs.getObject("descripcion_categoria");
                 

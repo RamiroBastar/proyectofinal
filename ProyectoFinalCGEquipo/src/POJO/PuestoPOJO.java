@@ -15,6 +15,13 @@ public class PuestoPOJO {
     private String nombre_puesto;
     private String descripcion_puesto;
 
+    @Override
+    public String toString() {
+        return nombre_puesto; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+
     public int getIdPuesto() {
         return idPuesto;
     }
