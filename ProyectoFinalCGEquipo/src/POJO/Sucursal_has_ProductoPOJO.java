@@ -15,6 +15,10 @@ public class Sucursal_has_ProductoPOJO {
     private int Producto_idProducto;
     private double existencia_en_sucursal;
 
+   
+    
+    
+
     public int getSucursal_idSucursal() {
         return Sucursal_idSucursal;
     }

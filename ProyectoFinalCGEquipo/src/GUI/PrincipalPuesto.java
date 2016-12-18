@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import JDBC.PuestoJDBC;
+import POJO.PuestoPOJO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ADOLFO
@@ -16,7 +20,12 @@ public class PrincipalPuesto extends javax.swing.JFrame {
      */
     public PrincipalPuesto() {
         initComponents();
+        cargarTabla();
     }
+    
+        private void cargarTabla(){
+            tbPuesto.setModel(PuestoJDBC.cargarTabla());
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,9 +78,19 @@ public class PrincipalPuesto extends javax.swing.JFrame {
 
         btnCancelar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout dialogoAltaPuestoLayout = new javax.swing.GroupLayout(dialogoAltaPuesto.getContentPane());
         dialogoAltaPuesto.getContentPane().setLayout(dialogoAltaPuestoLayout);
@@ -129,9 +148,19 @@ public class PrincipalPuesto extends javax.swing.JFrame {
 
         btnCancelar1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnCancelar1.setText("Cancelar");
+        btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelar1ActionPerformed(evt);
+            }
+        });
 
         btnGuardar1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnGuardar1.setText("Guardar");
+        btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardar1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Actualiza Puestos");
@@ -217,18 +246,43 @@ public class PrincipalPuesto extends javax.swing.JFrame {
 
         btnAlta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnAlta.setText("Alta");
+        btnAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAltaActionPerformed(evt);
+            }
+        });
 
         btnBaja.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnBaja.setText("Baja");
+        btnBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBajaActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnRefresh.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnRegresar.setText("<---- BACK");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -281,6 +335,178 @@ public class PrincipalPuesto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        
+        Menu m = new Menu();
+        m.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
+        // TODO add your handling code here:
+        
+        dialogoAltaPuesto.setLocationRelativeTo(this);
+        dialogoAltaPuesto.setSize(497, 318);
+        dialogoAltaPuesto.setVisible(true);
+        
+    }//GEN-LAST:event_btnAltaActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        cargarTabla();
+        
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
+        // TODO add your handling code here:
+        
+        
+        int filaSeleccionada = tbPuesto.getSelectedRow();
+        
+        if (filaSeleccionada==-1) {
+            JOptionPane.showMessageDialog(null, "Primero selecciona una fila");
+            
+        } else {
+            String id = tbPuesto.getValueAt(filaSeleccionada, 0) .toString();
+            boolean x =PuestoJDBC.eliminar(id);
+            
+            if (x==true) {
+                JOptionPane.showMessageDialog(null, "Exito al Eliminar");
+                cargarTabla();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+            }
+        }
+    }//GEN-LAST:event_btnBajaActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        
+        int filaSeleccionada = tbPuesto.getSelectedRow();
+        
+        if (filaSeleccionada==-1) {
+            JOptionPane.showMessageDialog(null, "Primero se debe seleccionar una fila");
+        } else {
+            String id = tbPuesto.getValueAt(filaSeleccionada, 0).toString();
+            String nombre = tbPuesto.getValueAt(filaSeleccionada, 1).toString();
+            String descripcion  = tbPuesto.getValueAt(filaSeleccionada, 2).toString();
+            
+            
+            tfIdPuesto.setText(id);
+            tfNombre1.setText(nombre);
+            jTextArea2.setText(descripcion);
+         
+                    
+            dialogoActualizaPuesto.setSize(527, 388);
+            dialogoActualizaPuesto.setLocationRelativeTo(null);
+            dialogoActualizaPuesto.setVisible(true);
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        
+         //Dialog 1:
+        
+        
+        String nombre = tfNombre.getText();
+        String descripcion = jTextArea1.getText();
+  
+
+        PuestoPOJO pojo = new PuestoPOJO();
+
+        pojo.setNombre_puesto(nombre);
+        pojo.setDescripcion_puesto(descripcion);
+ 
+
+        boolean x=PuestoJDBC.insertar(pojo);
+
+        if (x) {
+            JOptionPane.showMessageDialog(null, "Exito");
+            cargarTabla();
+            limpiaDialogoAlta();
+
+            dialogoAltaPuesto.setVisible(false);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "ERROR... :´v");
+        }
+
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        
+        //Dialog  1:
+        limpiaDialogoAlta();
+        dialogoAltaPuesto.setVisible(false);
+        
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
+        // TODO add your handling code here:
+        
+        //Dialog 2:
+        
+        limpiaDialogoActualizar();
+        dialogoActualizaPuesto.setVisible(false);
+        
+    }//GEN-LAST:event_btnCancelar1ActionPerformed
+
+    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+        // TODO add your handling code here:
+        
+        //Dialog 2:
+        
+        String id = tfIdPuesto.getText();
+        String nombre = tfNombre1.getText();
+        String descripcion = jTextArea2.getText();
+       
+
+        PuestoPOJO pojo = new PuestoPOJO();
+
+        pojo.setIdPuesto(Integer.parseInt(id));
+        pojo.setNombre_puesto(nombre);
+        pojo.setDescripcion_puesto(descripcion);
+   
+
+        boolean x = PuestoJDBC.actualizar(pojo);
+
+        if (x==true) {
+            JOptionPane.showMessageDialog(null, "Exito Al Actualizar");
+            cargarTabla();
+            
+            dialogoActualizaPuesto.setVisible(false);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al Actualizar");
+        }
+
+
+        
+    }//GEN-LAST:event_btnGuardar1ActionPerformed
+
+    
+        private void limpiaDialogoAlta(){
+            tfNombre.setText(null);
+            jTextArea1.setText(null);
+        }
+        
+        
+        
+        private void limpiaDialogoActualizar(){
+         tfIdPuesto.setText(null);
+         tfNombre1.setText(null);
+         jTextArea2.setText(null);
+         }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -306,6 +532,9 @@ public class PrincipalPuesto extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PrincipalPuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

@@ -7,10 +7,10 @@ package POJO;
 
 /**
  *
- * @author Juan Luis
- * Elabore el POJO de Producto
+ * @author Juan Luis Elabore el POJO de Producto
  */
 public class ProductoPOJO {
+
     private int idProducto;
     private String nombre_producto;
     private double costo_producto;
@@ -119,8 +119,10 @@ public class ProductoPOJO {
     public void setUnidadDeMedida_idUnidadDeMedida(int unidadDeMedida_idUnidadDeMedida) {
         this.unidadDeMedida_idUnidadDeMedida = unidadDeMedida_idUnidadDeMedida;
     }
-    
-        
-    
-    
+
+    @Override
+    public String toString() {
+        return nombre_producto;
+    }
+
 }

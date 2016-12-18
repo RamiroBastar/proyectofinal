@@ -26,7 +26,7 @@ public class DepartamentoJDBC {
 
     private static final String SQL_DELETE = "Delete from " + TABLE + " Where idDepartamento=?";
 
-    private static final String SQL_UPDATE = "Update " + TABLE + " set nombre_departamento=?, descripcion_departamento=?, where idDepartamento=?";
+    private static final String SQL_UPDATE = "Update " + TABLE + " set nombre_departamento=?, descripcion_departamento=? where idDepartamento=?";
 
     public static boolean insertar(DepartamentoPOJO pojo) {
         Connection con = null;

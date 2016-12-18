@@ -15,6 +15,13 @@ public class DepartamentoPOJO {
     private String nombre_departamento;
     private String descripcion_departamento;
 
+    @Override
+    public String toString() {
+        return nombre_departamento; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+
     public int getIdDepartamento() {
         return idDepartamento;
     }

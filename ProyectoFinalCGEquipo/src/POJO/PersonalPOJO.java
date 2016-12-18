@@ -13,7 +13,7 @@ import java.sql.Date;
  * @author aealc
  */
 public class PersonalPOJO {
-    
+
     private int idPersonal;
     private String nombre_personal;
     private String direccion_personal;
@@ -26,6 +26,11 @@ public class PersonalPOJO {
     private int Departamento_idDepartamento;
     private int Puesto_idPuesto;
     private int Sucursal_idSucursal;
+
+    @Override
+    public String toString() {
+        return nombre_personal; // La variable
+    }
 
     public int getIdPersonal() {
         return idPersonal;
@@ -122,8 +127,5 @@ public class PersonalPOJO {
     public void setSucursal_idSucursal(int Sucursal_idSucursal) {
         this.Sucursal_idSucursal = Sucursal_idSucursal;
     }
-    
-    
-    
-    
+
 }
